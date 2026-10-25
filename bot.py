@@ -7,7 +7,9 @@ from telegram.ext import Application, CommandHandler, CallbackQueryHandler, Cont
 
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN", "").strip()
-DB_PATH = "users.sqlite3"
+DB_DIR = os.environ.get("DATA_DIR", ".")
+os.makedirs(DB_DIR, exist_ok=True)
+DB_PATH = os.path.join(DB_DIR, "users.sqlite3")
 APK_LINK = "https://promo-bot-ucad.onrender.com/r/_BL6uwm93AAItIlF9C2kbg"
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
